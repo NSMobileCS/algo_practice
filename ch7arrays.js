@@ -112,14 +112,14 @@ function printAndTest2(arr){
     console.log(hasBalIdx(arr));
 }
 
-console.log('expected trues: ');
-expectTrues.forEach(arr => console.log(isBalancedArr(arr)));
+// console.log('expected trues: ');
+// expectTrues.forEach(arr => console.log(isBalancedArr(arr)));
 
-expectTrues.forEach(printAndTest)
+// expectTrues.forEach(printAndTest)
 
-console.log('----');
-console.log('expected falses: ');
-expectFalses.forEach(arr => console.log(isBalancedArr(arr)));
+// console.log('----');
+// console.log('expected falses: ');
+// expectFalses.forEach(arr => console.log(isBalancedArr(arr)));
 
 
 const expectTrues2 = [
@@ -132,3 +132,11 @@ const expectFalses2 = [
     [3, 4, 2, 8],
     [1, 1, 1, 1]
 ]
+
+console.log('expected trues: ');
+
+expectTrues2.forEach(printAndTest2)
+
+console.log('----');
+console.log('expected falses: ');
+expectFalses2.forEach(printAndTest2);
