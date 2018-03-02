@@ -1,0 +1,36 @@
+<html>
+    <head></head>
+    <body>
+
+    </body>
+    <script>
+        function putXs(n){
+            outp = '';
+            while (n > 0){
+                outp += 'x';
+                n -= 1;
+            }
+            return outp;
+        }        
+
+        function censor(s1, censArr){
+            var arr = s1.split(/\b/);
+            for (let idx=0; idx<arr.length; idx++){
+                let curWord = arr[idx];
+                for (let jdx=0; jdx<censArr.length; jdx++){
+                    if (curWord.toLowerCase() == censArr[jdx].toLowerCase()){
+                        arr[idx] = putXs(curWord.length);
+                    }
+                }
+            }
+            return arr.join('');
+        }
+
+        var s = 'this is a great string but we need to take out all the stringed up parts';
+        var remove_list = ['great', 'string'];
+
+        console.log(s, 'remove list: ', remove_list);
+        console.log(censor(s, remove_list));
+
+    </script>
+</html>

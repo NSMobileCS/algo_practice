@@ -1,0 +1,8 @@
+function gcSubStr(arr){
+    var maxstr = '';
+    var [x,y]=[0,0];
+    while ((y<arr[0].length)&&(z<arr[0].length)){
+        var substr = arr[0].slice(y,z+1); //DOUBLE CHECK slice(y,z) OR slice(y,z+1)???
+        var inAll = true;
+        
+        
