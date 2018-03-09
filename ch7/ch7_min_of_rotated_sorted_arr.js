@@ -6,15 +6,15 @@ module.exports = function minOfRotArr (arr) {
     }
     let mPoint;
     while ( (arr[idx] > arr[jdx]) && (idx < jdx) ) {
-        console.log(`
+        // console.log(`
         
-        ____________
-        loop begin
-        mPoint ${mPoint}
-        jdx ${jdx}; arr[jdx] ${arr[jdx]}
-        idx ${idx}; arr[idx] ${arr[idx]}
-        ____________
-        `);
+        // ____________
+        // loop begin
+        // mPoint ${mPoint}
+        // jdx ${jdx}; arr[jdx] ${arr[jdx]}
+        // idx ${idx}; arr[idx] ${arr[idx]}
+        // ____________
+        // `);
         mPoint = Math.floor((idx+jdx)/2); //declared outside loop for now        
         if (arr[mPoint] < arr[jdx]) {
             jdx = mPoint;
@@ -34,15 +34,15 @@ module.exports = function minOfRotArr (arr) {
                 return arr[idx+1];
             }
         }
-        console.log(`
+        // console.log(`
         
-        ____________
-        loop end
-        mPoint ${mPoint}
-        jdx ${jdx}; arr[jdx] ${arr[jdx]}
-        idx ${idx}; arr[idx] ${arr[idx]}
-        ____________
-        `);
+        // ____________
+        // loop end
+        // mPoint ${mPoint}
+        // jdx ${jdx}; arr[jdx] ${arr[jdx]}
+        // idx ${idx}; arr[idx] ${arr[idx]}
+        // ____________
+        // `);
     }
     return arr[jdx];
 }
