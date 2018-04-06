@@ -16,7 +16,7 @@ function isBalancedArr2 (arr) {
 }
 
 function isBalancedArr25(arr){
-    var ri = arr.elgnth-1;
+    var ri = arr.length-1;
     var li = 0;
     var rSum = arr[arr.length -1];
     var lSum = arr[0];

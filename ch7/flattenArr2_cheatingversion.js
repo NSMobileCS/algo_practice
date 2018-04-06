@@ -1,10 +1,14 @@
-function flattenArr (arr) {
-    let outString = `[${arr}]`;
-    console.log(outString);
-    outString = outString.replace( /([a-zA-Z]{1,}\w{0,})/g, " \""+'$&'+"\"");
-    console.log(outString);
-    return eval(outString);
+function flattenArr (arr) { 
+    let payLoad = `[${arr}]`;
+    console.log(payLoad);
+    payLoad = payLoad.replace( /([a-zA-Z]{1,}\w{0,})/g, ' \'$& \'');
+    // console.log(payLoad);
+    return eval(payLoad);
+    // not recommended for production
+    // ...what w/ blindly executing the input & crashing on obj's
 }
+
+
 
 //this builds on a side effect of string building syntax
 
