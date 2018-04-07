@@ -11,26 +11,28 @@ const example = `
 `;
 
 
-function waysUpStairs (n, arr) {
-    if (arr == undefined) {
-        arr = [];
+function waysUpStairs (nSteps) { 
+    let ways = [ [] ];
+    while (nSteps > 1) {
+        nSteps -= 2;
+        let newSide = ways.map(
+            (s1) => {
+                let s2 = s1.slice();
+                s1.push(1,1);
+                s2.push(2);
+                return s2;
+            }
+        );
+        ways = ways.concat(newSide);
     }
-    if (n < 1) { 
-        return arr;
-    }
-    if (n == 1) {
-        arr.push(1);
-        return arr;
+    if (nSteps > 0) {
+        return ways.map( s1 => s1.concat([1]) );
     } else {
-        let ar2 = arr.map( (_) => _ ); 
-        //store identical mapping of arr to ar2 for quick reliable copy
-        arr.push(1);
-        ar2.push(2);
-        return [ waysUpStairs(n-1, arr), waysUpStairs(n-2, ar2) ];
+        return ways;
     }
- }
+}
 
-for (let n = 5; n > 0; n--) {
+for (let n = 0; n < 7; n++) {
     console.log(`testing n=${n}`);
     console.log(waysUpStairs(n));
     console.log('----------------------------');

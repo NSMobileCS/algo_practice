@@ -25,16 +25,19 @@ function mkZigZag (str, nRows) {
     let rdx, cdx, cCounter;
     let idx = rdx = cdx = cCounter = 0;
     while (idx < str.length) {
-        console.log(grid);
-        console.log(`rdx: ${rdx}; cdx: ${cdx}; idx: ${idx}; cCounter: ${cCounter}`);
+        // console.log(grid);
+        // console.log(`rdx: ${rdx}; cdx: ${cdx}; idx: ${idx}; cCounter: ${cCounter}`);
         grid[rdx][cdx] = str[idx];
         ++idx;
-        cCounter = idx % lenCycle;
-        if (cCounter < nRows ) {
+        ++cCounter;
+        if ( cCounter < nRows ) {
             ++rdx;
         } else {
             ++cdx;
             --rdx;
+            if (cCounter >= lenCycle) {
+                cCounter = 0;
+            }
         }
     }
     return grid.map( row => row.filter( _ => _ ).join('') ).join('');
@@ -43,5 +46,5 @@ function mkZigZag (str, nRows) {
 console.log("mkZigZag('paypalishiring', 3)  >>>");
 console.log(mkZigZag('paypalishiring', 3));
 
-console.log("mkZigZag('abcdefghijklmnop', 4) >>>");
-console.log(mkZigZag('abcdefghijklmnop', 4));
+// console.log("mkZigZag('abcdefghijklmnop', 4) >>>");
+// console.log(mkZigZag('abcdefghijklmnop', 4));
