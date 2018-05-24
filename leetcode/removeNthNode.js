@@ -1,8 +1,8 @@
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
- *   this.val = val;
- *   this.next = null;
+ *     this.val = val;
+ *     this.next = null;
  * }
  */
 /**
@@ -25,7 +25,11 @@ var removeNthFromEnd = function(head, n) {
   if (prev) {
     prev.next = r1.next;
   } else {
-    head.next = r1.next;
+    if (head == r1) {
+      return r1.next;
+    } else {
+      head.next = r1.next;
+    }
   }
   return head;
 };
