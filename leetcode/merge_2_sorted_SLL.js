@@ -30,42 +30,46 @@ const parseToSLL = (s) => {
 
 let l1 = parseToSLL('1->2->4');
 let l2 = parseToSLL('1->3->4');
-console.log('l1');
-console.log(l1);
-console.log('l2');
-console.log(l2);
 
 var mergeTwoLists = function(l1, l2) {
   if ( !( l1 && l2 ) ) return l2 || l1;
+  let optiRun; // magically makes it faster. jk; ctrls if we can just alternate.
+  let pullFrom = optiRun = 0;  // bool; 1 = use l2; see below
   let head = new ListNode(null);
   let prev = head;
-  let pullFrom = 0;  // bool; 1 = use l2
   while ( l1 && l2 ) {
-  console.log(`
-    l1 ${l1.log()}
-    l2 ${l2.log()}
-    head ${head.log()}
-    prev ${prev.log()}
-  `);
-    if ( pullFrom == 1 ) {
-      prev.next = l2;
-      l2 = l2.next;
+    if ( optiRun == 1 ) {
+      // optimized path once nonequal elems found
+      if ( pullFrom == 1 ) {
+        prev.next = l2;
+        l2 = l2.next;
+      } else {
+        prev.next = l1;
+        l1 = l1.next;
+      }
+      prev = prev.next;
+      // XOR bit twiddling alternator ( pullFrom goes 0->1->0->1...)
+      pullFrom ^= 1;
     } else {
-      prev.next = l1;
-      l1 = l1.next;
+      // need to compare still, items have been equal
+      if ( l2.val < l1.val ) {
+        prev.next = l2;
+        l2 = l2.next;
+        optiRun = 1;
+      } else {
+        if ( l2.val > l1.val ) {
+          optiRun = pullFrom = 1;
+        }
+        prev.next = l1;
+        l1 = l1.next;
+      }
+      prev = prev.next;
     }
-    prev = prev.next;
-    pullFrom ^= 1;
-    // pullFrom = (pullFrom + 1) % 2;
   }
   if (l2) {
-    console.log('if l2 ( --> TRUE ) ');
     prev.next = l2;
-  } else {
-    if (l1) {
-      console.log('if l1 ( --> TRUE ) ');
+  } else if (l1) {
       prev.next = l1;
-    }
   }
   return head.next;
 };
