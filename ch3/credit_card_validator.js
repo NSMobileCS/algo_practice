@@ -18,4 +18,4 @@ function validateCredCard(ccNums) {
 }
 
 
-console.log(validateCredCard([5,2,2,8,2]));
+console.log(validateCredCard([5,2,2,8,2, 0]));
