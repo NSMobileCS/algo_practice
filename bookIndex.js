@@ -1,6 +1,6 @@
 function indexFormList(arr) {
     let outp = [];
-    for (let idx = 0; idx<arr.length-1; idx++) {
+    for (let idx = 0; idx<arr.length; idx++) {
         let n = 0;
         let partial = [ arr[idx] ];
         for (let jdx = idx + 1; jdx < arr.length; jdx++) {
@@ -18,9 +18,6 @@ function indexFormList(arr) {
         } else {
             outp.push(`${partial[0]}`);
         }
-        console.log(idx);
-
-        console.log(idx);
     }
     return outp.join(', ');
 }
