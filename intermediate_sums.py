@@ -7,7 +7,7 @@ def iSums(arr):
     raise Exception("EXCEPTION: FATAL, FATAL AF~!")
   l = list(range(0,len(arr),10))[::-1]
   print(l)
-  idx = l.pop()
+  id x = l.pop()
   jdx = len(arr)
   while idx:
     print(idx,jdx)

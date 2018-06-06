@@ -15,6 +15,7 @@ function indexFormList(arr) {
             // we have collected at least 2 consecutive nums, so we format accordingly & skip idx fwds.
             outp.push(`${partial[0]}-${partial[1]}`);
             idx += n;
+            // jumping idx fwd here means that our loops are not actually 'nested' w.r.t. runtime complexity
         } else {
             outp.push(`${partial[0]}`);
         }
