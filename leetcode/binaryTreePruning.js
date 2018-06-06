@@ -1,36 +1,38 @@
-const description = `We are given the head node root of a binary tree, where additionally every
-     node's value is either a 0 or a 1.
-    Return the same tree where every subtree (of the given tree) 
-    not containing a 1 has been removed.
-    (Recall that the subtree of a node X is X, plus every node that is a descendant of X.)
-`;
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *   this.val = val;
+ *   this.left = this.right = null;
+ * }
+ */
+/**
+//  * @param {TreeNode} root
+//  * @return {TreeNode}
+//  */
 
-function hasNonZero (root) {
-    if (!root) return false;
-    if (root.val != 0) return true;
-    return ( hasNonZero(root.left) ||  hasNonZero(root.right) );
-}
+// hasNonZerVal = function (root) {
+//   if (root.val && root.val == 1) return true;
+//   if ( root.left) {
+//     if (hasNonZerVal( root.left) ) return true;
+//   }
+//   if ( root.right ) {
+//     if (hasNonZerVal(root.right) ) return true;
+//   }
+//   return false;
+// }
 
-
-function unpack (root) {
-    var arr = [];
-    function _unpack (root)
-        if ( !(root && root.val) ) {
-            return;
-        }
-        let a = []
-        if ( root.left ) {
-            memo = [[root]];
-        }
-
-}
-
-function pruneTree (root) {
-    if ( hasNonZero(root.left) ) {
-
-    }
-}
-
-
-
-
+var pruneTree = function(root) {
+  console.log(root);
+  let mustKeep = false;
+  if ( root.left ) {
+    root.left = pruneTree(root.left);
+  } else {
+    root.left = null;
+  }
+  if ( root.right ) {
+    root.right = pruneTree(root.right);
+  } else {
+    root.right = null;
+  }
+  return root;
+};
