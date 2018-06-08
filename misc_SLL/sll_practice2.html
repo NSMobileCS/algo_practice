@@ -1,0 +1,85 @@
+<html><head></head><script>
+
+function SLL(){
+    this.head = null;
+}
+
+  function Node(val){
+    this.val = val;
+    this.next = null;
+}
+
+SLL.prototype.display = function(){
+    var myList = '';
+    var runner = this.head;
+    while (runner) {
+        myList += runner.val;
+        myList += ', ';
+        runner = runner.next;
+    }
+    if (myList.length > 2) {
+        myList = myList.slice(0, myList.length-2);
+    }
+   return myList;
+}
+
+
+function prepend(list, val, before){
+    var newNode = new Node(val);
+    if (list.head && list.head.val === before) {
+        newNode.next = list.head;
+        list.head = newNode;
+        return list;
+    }
+    var cur = list.head;
+    var pre = null;
+    // var cur = list.head.next;
+    // var pre = list.head;
+    while (cur) {
+        pre = cur;
+        cur = cur.next;
+        console.log(cur);
+        if (cur && (cur.val == before)) {
+            newNode.next = cur;
+            pre.next = newNode;
+            return list;
+        }
+    }
+    return list;
+}
+
+function promptList(){
+    let list = new SLL();
+    let userInput = prompt();
+    let prev = null;
+    while (userInput !== null) {
+        let newNode = new Node(userInput);
+        if (prev) {
+            prev.next = newNode;
+            prev = newNode;
+        } else {
+            list.head = newNode;
+            prev = newNode;
+        }
+        userInput = prompt();
+    }
+    return list;
+}
+
+
+
+
+function arrToSLL(arr){
+    let n = new Node(arr.shift())
+    let current = n;
+    while (arr.length > 0) {
+        current.next = new Node(arr.shift());
+        current = current.next;
+    }
+    let sll = new SLL();
+    sll.head = n;
+    return sll;
+}
+</script>
+<body></body>
+</html>
