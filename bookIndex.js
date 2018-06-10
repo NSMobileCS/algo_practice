@@ -1,5 +1,6 @@
 function indexFormList(arr) {
     let outp = [];
+    // we loop thru storing a partial value, which can be a single value or a 2-tuple
     for (let idx = 0; idx<arr.length; idx++) {
         let n = 0;
         let partial = [ arr[idx] ];
@@ -12,7 +13,7 @@ function indexFormList(arr) {
             }
         }
         if ( partial.length == 2 ) {
-            // we have collected at least 2 consecutive nums, so we format accordingly & skip idx fwds.
+            // we have collected at least 2 consecutive nums, so we format accordingly & skip idx fwd.
             outp.push(`${partial[0]}-${partial[1]}`);
             idx += n;
             // jumping idx fwd here means that our loops are not actually 'nested' w.r.t. runtime complexity
