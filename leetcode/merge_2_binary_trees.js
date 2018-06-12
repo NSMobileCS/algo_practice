@@ -11,11 +11,17 @@
  * @return {TreeNode}
  */
 var mergeTrees = function(t1, t2) {
-  if ( !(t1) && !(t2) ) return;
-  if ( !(t1) || !(t1.val) && !(t1.left || t1.right) ) return t2;
-  if ( !(t2) || !(t2.val) && !(t2.left || t2.right) ) return t1;
-  t1.val += (t2.val || 0);
-  t1.left = mergeTrees(t1.left, t2.left);
-  t1.right = mergeTrees(t1.right, t2.right);
-  return t1;
+  let val = 0;
+  if (t1 == null) return t2;
+  if (t2 == null) return t1;
+  if ( t1 && t1.val ) val += t1.val;
+  if ( t2 && t2.val ) val += t2.val;
+  let root = new TreeNode(val);
+  if ( (t1 && t1.left) || (t2 && t2.left) ) {
+    root.left = mergeTrees(t1.left, t2.left);
+  }
+  if ( (t1 && t1.right) || (t2 && t2.right) ) {
+    root.right = mergeTrees(t1.right, t2.right);
+  }
+  return root;
 };

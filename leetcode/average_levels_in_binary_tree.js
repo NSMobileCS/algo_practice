@@ -9,6 +9,12 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
+
+function TreeNode(val) {
+  this.val = val;
+  this.left = this.right = null;
+}
+
 var averageOfLevels = function(root) {
   let outp = [ root.val ];
   let nexts = [];
