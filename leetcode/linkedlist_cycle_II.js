@@ -44,6 +44,10 @@ var detectCycle = function(head) {
 };
 
 
+
+
+
+
 let goodList = CSVtoSLL('3,5,5,68,42,1');
 
 let badList = new ListNode('123');
