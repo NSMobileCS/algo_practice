@@ -19,7 +19,7 @@ def arr_to_BST(arr0):
         return root
     return _a2BST(arr1)
 
-def print_BST(root):
+def print_BST(root, char_space_per_node=10):
     if not root:
         return
     outp = [ [root.val] ]
@@ -29,23 +29,34 @@ def print_BST(root):
         child_nodes.append(root.left)
     if root.right:
         child_nodes.append(root.right)
+    outp.append(list(map(lambda x: x.val, child_nodes)))
     while child_nodes:
         next_child_nodes = []
         row = []
         for node in child_nodes:
-            row.append(node.val)
             if node.left:
                 next_child_nodes.append(node.left)
+                row.append(node.left.val)
+            else:
+                row.append('  <||>  ')
             if node.right:
                 next_child_nodes.append(node.right)
+                row.append(node.right.val)
+            else:
+                row.append('  <||>  ')
         outp.append(row)
         child_nodes = next_child_nodes
-    line_length = max(map(len, outp))
-    for n, line in enumerate(outp):
-        tabchars = ' ' * int(line_length / (n+1) )
-        line = [''] + list(map(str, line))
-        print(tabchars.join(line))
-    return outp
+    line_len = max(map(len, outp)) * char_space_per_node
+    final_outp = []
+    for line in outp:
+        space_betw = int((line_len - char_space_per_node*len(line)) / (2 + len(line)))
+        partial = ''
+        for nodeval in line:
+            partial += space_betw * ' '
+            partial += f'{nodeval:8}'
+        final_outp.append(partial)
+        print(partial)
+    return final_outp
 
 arr01 = [1, 2, 20, 30, 36, 40, 55]
 tree_root1 = arr_to_BST(arr01)

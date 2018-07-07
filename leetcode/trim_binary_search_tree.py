@@ -8,8 +8,8 @@ class TreeNode:
         self.right = None
     def __str__(self):
         return print_BST(self)
-
-
+    def __repr__(self):
+        return str(self)
 
 
 class Solution:
