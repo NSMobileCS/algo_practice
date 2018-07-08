@@ -38,22 +38,28 @@ def print_BST(root, char_space_per_node=10):
                 next_child_nodes.append(node.left)
                 row.append(node.left.val)
             else:
-                row.append('  <||>  ')
+                row.append('  (|__|)  ')
             if node.right:
                 next_child_nodes.append(node.right)
                 row.append(node.right.val)
             else:
-                row.append('  <||>  ')
+                row.append('  (|__|)  ')
         outp.append(row)
         child_nodes = next_child_nodes
-    line_len = max(map(len, outp)) * char_space_per_node
+    line_len = max([max(map(len, outp)) * char_space_per_node, 80])
     final_outp = []
     for line in outp:
-        space_betw = int((line_len - char_space_per_node*len(line)) / (2 + len(line)))
+        space_betw = int((line_len - char_space_per_node*len(line)))
+        if len(line) != 0:
+            space_betw = int(space_betw / (1 + len(line)))
         partial = ''
         for nodeval in line:
             partial += space_betw * ' '
-            partial += f'{nodeval:8}'
+            val_str = str(nodeval)
+            within_node_spacing = char_space_per_node - len(val_str)
+            if within_node_spacing > 0:
+                val_str = ' ' * within_node_spacing + val_str
+            partial += val_str
         final_outp.append(partial)
         print(partial)
     return final_outp
