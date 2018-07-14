@@ -1,8 +1,8 @@
-class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
 def arr_to_BST(arr0):
     arr1 = sorted(arr0)
@@ -19,7 +19,7 @@ def arr_to_BST(arr0):
         return root
     return _a2BST(arr1)
 
-def print_BST(root, char_space_per_node=10):
+def print_BST(root, char_space_per_node=5):
     if not root:
         return
     outp = [ [root.val] ]
@@ -61,12 +61,25 @@ def print_BST(root, char_space_per_node=10):
                 val_str = ' ' * within_node_spacing + val_str
             partial += val_str
         final_outp.append(partial)
+        barrs = line_len * '|'
+        final_outp.append(barrs)
         print(partial)
-    return final_outp
+        print(barrs)
+    return '\n'.join(final_outp)
 
-arr01 = [1, 2, 20, 30, 36, 40, 55]
-tree_root1 = arr_to_BST(arr01)
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+    def __str__(self):
+        return print_BST(self)
+    def __repr__(self):
+        return str(self)
 
-print_BST(tree_root1)
+
+
+# arr01 = [1, 2, 20, 30, 36, 40, 55]
+# tree_root1 = arr_to_BST(arr01)
 
 
