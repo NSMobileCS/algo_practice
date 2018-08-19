@@ -17,8 +17,8 @@ class Solution:
         curlev = [root]
         while curlev:
           nlev = []
-          
-          outp.append([x.val for x in curlev if x != None])    
+
+          outp.append([x.val for x in curlev if x != None])
           for node in curlev:
             if node.left:
               nlev.append(node.left)
@@ -26,7 +26,7 @@ class Solution:
               nlev.append(node.right)
           curlev = nlev
         return outp
-          
-          
-          
-        
+
+
+
+
