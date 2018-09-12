@@ -23,6 +23,41 @@ class ListNode:
 
 
 
+
+
+
+class Solution:
+    def nodeToStr(self, root):
+        res = []
+        while root and root.val:
+            res.append(str(root.val))
+            root = root.next
+        return ' -> '.join(res)
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        arr = []
+        for li in lists:
+            cur = li
+            while cur:
+                arr.append(cur)
+                cur = cur.next
+        pre_root = cur = ListNode(None)
+        for x in sorted(arr, key=lambda x: x.val):
+            cur.next = x
+            cur = cur.next
+        if cur and cur.next:
+            cur.next = None     ## remember to close the loop!
+        return pre_root.next
+
+
+
+
+
+# some other approaches I was considering...
+
 def buffered_list(root):
     """
     generator fn that gives next node if present else None
@@ -35,7 +70,6 @@ def buffered_list(root):
             popped = cur
             cur = cur.next
             yield popped
-
 
 def buffer_lists(lists):
     """
@@ -55,40 +89,6 @@ def buffer_lists(lists):
             yield sorted(arr, key=lambda x: x.val)
         else:
             return
-
-
-class Solution:
-    def nodeToStr(self, root):
-        res = []
-        while root and root.val:
-            res.append(str(root.val))
-            root = root.next
-        return ' -> '.join(res)
-    def mergeKLists(self, lists):
-        """
-        :type lists: List[ListNode]
-        :rtype: ListNode
-        """
-        arr = []
-        for li in lists:
-            idx = 0
-            cur = li
-            while cur:
-                arr.append(cur)
-                cur = cur.next
-        pre_root = cur = ListNode(None)
-        for x in sorted(arr, key=lambda x: x.val):
-            cur.next = x
-            cur = cur.next
-        if cur and cur.next:
-            cur.next = None
-        return pre_root.next
-
-
-
-
-
-
 
 
 
