@@ -29,8 +29,3 @@ class Solution:
             tmp = cur.next
         node.next = tmp
         cur.next = node
-
-
-
-
-

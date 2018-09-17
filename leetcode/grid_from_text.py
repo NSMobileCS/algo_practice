@@ -1,8 +1,5 @@
 # tools for finding diagonals etc in grids.
 
-for _ in range(100):
-    print("WHAT THE FUCK~??")
-
 def mk_grid(txt):
     return tuple([tuple([int(ch) for ch in row.split()]) for row in txt.split('\n') if row])
 
