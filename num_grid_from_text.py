@@ -13,23 +13,23 @@ def get_top_diags(grid, min_length=4):
     for cdx in range(len(grid[0])):
         a, b = 0, cdx
         r = [grid[a][b]]
-        c, d = a + 1, b + 1
-        while (c < len(grid)) and (d < len(grid[0])):
-            r.append(grid[c][d])
-            a, b = c, d
-            c += 1
-            d += 1
-        if len(r) > min_length:
+        a += 1
+        b += 1
+        while (a < len(grid)) and (b < len(grid[0])):
+            r.append(grid[a][b])
+            a += 1
+            b += 1
+        if len(r) >= min_length:
             diags.append(tuple(r))
-        l = [grid[a][b]]
         a, b = 0, cdx
-        c, d = a - 1, b - 1
-        while (c > -1) and (d > -1):
-            l.append(grid[c][d])
-            a, b = c, d
-            c += 1
-            d += 1
-        if len(l) > min_length:
+        l = [grid[a][b]]
+        a += 1
+        b -= 1
+        while (a < len(grid)) and (b > -1):
+            l.append(grid[a][b])
+            a += 1
+            b -= 1
+        if len(l) >= min_length:
             diags.append(tuple(l))
     return tuple(diags)
 
@@ -61,14 +61,14 @@ def get_bottom_diags(grid, min_length=4):
 def get_cols(grid):
     return tuple([tuple([grid[cdx][rdx] for rdx in range(len(grid))]) for cdx in range(len(grid[0]))])
 
+def X_up(nums):
+    res = 1
+    for n in nums:
+        res *= n
+    return res
 
 
 def greatest_adj_prod(subseqs):
-    def X_up(nums):
-        res = 1
-        for n in nums:
-            res *= n
-        return res
     max_prod = 0
     max_prod_tup = (0, 0, 0)
     for subseq in subseqs:
