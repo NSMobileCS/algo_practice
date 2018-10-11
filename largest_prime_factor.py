@@ -12,6 +12,19 @@ def largest_prime_factor(n):
     return max_factor
 
 
+def prime_factorize(n):
+    res = dict()
+    prime_stream = gen_primes()
+    while n > 1:
+        p = next(prime_stream)
+        matches = 0
+        while n % p == 0:
+            matches += 1
+            n /= p
+        if matches:
+            res[p] = matches
+    return res
+
 # generator function for primes
 def gen_primes():
     primes = [2]
