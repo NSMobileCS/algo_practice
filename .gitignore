@@ -2,3 +2,6 @@ temp
 temp/
 /temp
 .vscode
+.idea
+*/.idea
+
