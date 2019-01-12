@@ -6,7 +6,7 @@
 #         self.right = None
 
 class Solution(object):
-    def _init__(self):
+    def __init__(self):
         self.val = None
 
     def isUnivalTree(self, root):
