@@ -1,12 +1,12 @@
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 def arr_to_BST(arr0):
     arr1 = sorted(arr0)
-    #  sort array beore passing to recursive function closure
+    #  sort array before passing to recursive function closure
     #  defined here, so we don't waste overhead
     #  calling sorted over & over...
     def _a2BST(arr):
