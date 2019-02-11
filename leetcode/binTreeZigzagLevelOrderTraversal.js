@@ -7,10 +7,11 @@ function TreeNode(val) {
 
 
 
-var lvlOrderTraversal = function (root) {
-    let res = [root.val];
+var zigzagLevelOrder = function (root) {
+    if (!root) return [];
+    let res = [[root.val]];
     let curLvl = [root];
-    var idxCurLvl = 0; // idx of curLvl
+    let idxCurLvl = 0; // idx of curLvl
     while (curLvl && curLvl.length > 0) {
         let nextLvl = [];
         idxCurLvl++;
@@ -34,44 +35,6 @@ var lvlOrderTraversal = function (root) {
     return res;
 };
 
-// var zigzagLevelOrder = function (root) {
-//     let arr = lvlOrderTraversal(root);
-//     for (let idx=0; idx<arr.length; idx++) {
-//         if (idx % 2 === 1) {
-//             arr[idx].reverse();
-//         }
-//     }
-//     return arr;
-// };
-
-// var zigzagLevelOrder = function(root) {
-//     if (!root || !root.val) return [];
-//     let res = [];
-//     let lvlNum = 0;
-//     let lvlNodes = [root];
-//     let nextLvlNodes = [];
-//     while (lvlNodes) {
-//         let lvlNodeVals = lvlNodes.map(
-//             (node) => {
-//                 if (node.left) {
-//                     nextLvlNodes.push(node.left);
-//                 }
-//                 if (node.right) {
-//                     nextLvlNodes.push(node.right);
-//                 }
-//                 return node.val;
-//             }
-//             );
-//         if (lvlNum % 2 === 0) {
-//             res.push(lvlNodeVals);
-//         } else {
-//             res.push(lvlNodeVals.reverse())
-//         }
-//         lvlNodes = nextLvlNodes;
-//         lvlNum++;
-//     }
-//     return res;
-// };
 
 
 let r = new TreeNode(3);
@@ -82,5 +45,21 @@ r.right = new TreeNode(5);
 r.right.left = new TreeNode(4);
 r.right.right = new TreeNode(6);
 
-console.log(lvlOrderTraversal(r));
+let tmp = [r];
+while (tmp && tmp.length > 0) {
+    console.log(tmp.map(x => x.val));
+    let newTmp = [];
+    for (let t of tmp) {
+        if (t.left) {
+            newTmp.push(t.left);
+        }
+        if (t.right) {
+            newTmp.push(t.right);
+        }
+    }
+    tmp = newTmp;
+}
+
 console.log(zigzagLevelOrder(r));
+console.log(zigzagLevelOrder(new TreeNode(null)));
+console.log(zigzagLevelOrder());
