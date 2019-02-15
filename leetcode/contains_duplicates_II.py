@@ -4,11 +4,12 @@ class Solution:
     def containsNearbyDuplicate(self, nums: 'List[int]', k: 'int') -> 'bool':
         val_pos = defaultdict(list)
         for idx, val in enumerate(nums):
-            val_pos[val].append(idx)
-            if len(val_pos[val]) > 1:
-                for position in val_pos[val][:-1]:
-                    if abs(idx-position) <= k:
+            if val_pos[val]:
+                for position in val_pos[val]:
+                    if idx-position <= k:
                         return True
+            val_pos[val].append(idx)
+
         return False
 
 
