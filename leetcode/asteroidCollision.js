@@ -3,13 +3,16 @@
  * @return {number[]}
  */
 var asteroidCollision = function(asteroids) {
-
+    let leftMoving = [];
     let rightMoving = [];
-    for (let idx=0; idx<asteroids.length; idx++) {
+    for (let idx=asteroids.length; idx<-1; idx--) {
         if (asteroids[idx] > 0) {
             rightMoving.push(idx);
         } else {
-            if (rightMoving.length > 0) {
+            leftMoving.push(idx);
+        }
+        while (leftMoving.length > 0 && rightMoving.length > 0) {
+
                 let rdx = rightMoving.pop();
                 let winner = asteroids[rdx] + asteroids[idx];
                 if (winner === 0) {
