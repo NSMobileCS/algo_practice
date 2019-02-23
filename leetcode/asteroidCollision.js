@@ -3,31 +3,57 @@
  * @return {number[]}
  */
 var asteroidCollision = function(asteroids) {
-    let leftMoving = [];
-    let rightMoving = [];
-    for (let idx=asteroids.length; idx<-1; idx--) {
-        if (asteroids[idx] > 0) {
-            rightMoving.push(idx);
+    let rtQueue = [];
+    let output = [];
+    for (let idx=0; idx<asteroids.length; idx++) {
+        let cur = asteroids[idx];
+        if (cur > 0) {
+            rtQueue.push(cur);
         } else {
-            leftMoving.push(idx);
-        }
-        while (leftMoving.length > 0 && rightMoving.length > 0) {
-
-                let rdx = rightMoving.pop();
-                let winner = asteroids[rdx] + asteroids[idx];
-                if (winner === 0) {
-                    asteroids.splice(rdx, 2);
-                } else {
-                    asteroids.splice(rdx, 2, winner);
-                    if (winner > 0) {
-                       rightMoving.push(rdx);
+            if (rtQueue.length < 1 && cur < 0) {
+                output.push(cur); // nothing to the left for it to hit
+            } else {
+                while (rtQueue.length > 0) {
+                    if (cur + rtQueue[rtQueue.length-1] > 0){
+                        cur = undefined;
+                        break;
                     } else {
-
+                        let tmp = rtQueue.pop();
+                        if (cur + tmp === 0) {
+                            cur = undefined;
+                            break;
+                        }
                     }
                 }
-
-            };
+                if (cur) {
+                    output.push(cur);
+                }
+            }
         }
     }
-    
+    return output.concat(rtQueue);
 };
+
+
+
+console.log(asteroidCollision([5, 10, -5]));
+console.log('^ should be [5, 10]');
+console.log('---');
+
+
+
+console.log(asteroidCollision([8, -8]));
+console.log('^ should be []');
+console.log('---');
+
+
+console.log(asteroidCollision([-2,-2,1,-2]));
+console.log('^ should be [-2,-2,-2]');
+console.log('---');
+
+
+
+
+
+
+
