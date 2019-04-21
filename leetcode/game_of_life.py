@@ -27,16 +27,15 @@ class Solution:
                 # now we have the neighbors counted, see if it needs to change
                 if neighbors == 2:
                     continue    # if 2 neighbors, no change
-                elif neighbors < 2 and board[rdx][cdx]:
-                    flips.append((rdx, cdx,))   # cell dies
-                elif neighbors > 3 and board[rdx][cdx]:
-                    flips.append((rdx, cdx,))   # cell dies
+                elif neighbors < 2:
+                    if board[rdx][cdx]:
+                        flips.append((rdx, cdx,))   # cell dies
+                elif neighbors > 3:
+                    if board[rdx][cdx]:
+                        flips.append((rdx, cdx,))   # cell dies
                 else:
                     if not board[rdx][cdx]:
                         flips.append((rdx, cdx,))
 
         for (rdx, cdx) in flips:
             board[rdx][cdx] ^= 1
-
-        return board
-
